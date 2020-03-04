@@ -42,7 +42,6 @@ const HomeNavigator = () => (
 const Home: React.FunctionComponent = () => {
   const navigation = useNavigation();
   useEffect(() => {
-    NavigationService.navigate('Tab');
     // navigation.navigate('Tab');
   }, []);
   return (
@@ -58,7 +57,7 @@ const Home: React.FunctionComponent = () => {
       />
       <Button
         title="Go to Tab by NavigationService"
-        onPress={() => NavigationService.navigate('Drawer')}
+        onPress={() => NavigationService.navigate('Tab')}
       />
     </View>
   );

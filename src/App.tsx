@@ -9,7 +9,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import HomeNavigator from './Home';
-import { isMountedRef, navigationRef } from './navigation-service';
+import NavigationService, { isMountedRef } from './navigation-service';
 
 const App: React.FunctionComponent = () => {
   useEffect(() => {
@@ -18,7 +18,12 @@ const App: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <NavigationContainer ref={navigationRef as any}>
+    // <NavigationContainer ref={navigationRef as any}>
+    <NavigationContainer
+      ref={(navigationRef) =>
+        NavigationService.setTopLevelNavigator(navigationRef)
+      }
+    >
       <HomeNavigator />
     </NavigationContainer>
   );

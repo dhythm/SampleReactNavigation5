@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect } from 'react';
 import { Alert, Button, View } from 'react-native';
+import CustomTabNavigator from './CustomTab';
 import DrawerNavigator from './Drawer';
 import NavigationService from './navigation-service';
 import TabNavigator from './Tab';
@@ -35,6 +36,7 @@ const HomeNavigator = () => (
     />
     <Stack.Screen name="Details" component={Details} />
     <Stack.Screen name="Tab" component={TabNavigator} />
+    <Stack.Screen name="CustomTab" component={CustomTabNavigator} />
     <Stack.Screen name="Drawer" component={DrawerNavigator} />
   </Stack.Navigator>
 );
@@ -56,8 +58,8 @@ const Home: React.FunctionComponent = () => {
         onPress={() => navigation.navigate('Drawer')}
       />
       <Button
-        title="Go to Tab by NavigationService"
-        onPress={() => NavigationService.navigate('Tab')}
+        title="Go to CustomTab"
+        onPress={() => NavigationService.navigate('CustomTab')}
       />
     </View>
   );

@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect } from 'react';
 import { Alert, Button, View } from 'react-native';
 import DrawerNavigator from './Drawer';
+import NavigationService from './navigation-service';
 import TabNavigator from './Tab';
 
 const Stack = createStackNavigator();
@@ -41,7 +42,8 @@ const HomeNavigator = () => (
 const Home: React.FunctionComponent = () => {
   const navigation = useNavigation();
   useEffect(() => {
-    navigation.navigate('Tab');
+    NavigationService.navigate('Tab');
+    // navigation.navigate('Tab');
   }, []);
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -53,6 +55,10 @@ const Home: React.FunctionComponent = () => {
       <Button
         title="Go to Drawer"
         onPress={() => navigation.navigate('Drawer')}
+      />
+      <Button
+        title="Go to Tab by NavigationService"
+        onPress={() => NavigationService.navigate('Drawer')}
       />
     </View>
   );

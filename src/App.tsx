@@ -7,12 +7,18 @@
  */
 
 import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import HomeNavigator from './Home';
+import { isMountedRef, navigationRef } from './navigation-service';
 
 const App: React.FunctionComponent = () => {
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => (isMountedRef.current = false);
+  }, []);
+
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef as any}>
       <HomeNavigator />
     </NavigationContainer>
   );

@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Alert, Button, View } from 'react-native';
 import DrawerNavigator from './Drawer';
 import TabNavigator from './Tab';
@@ -40,6 +40,9 @@ const HomeNavigator = () => (
 
 const Home: React.FunctionComponent = () => {
   const navigation = useNavigation();
+  useEffect(() => {
+    navigation.navigate('Tab');
+  }, []);
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button

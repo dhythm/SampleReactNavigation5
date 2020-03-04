@@ -9,12 +9,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import HomeNavigator from './Home';
-import NavigationService, { isMountedRef } from './navigation-service';
+import NavigationService from './navigation-service';
 
 const App: React.FunctionComponent = () => {
   useEffect(() => {
-    isMountedRef.current = true;
-    return () => (isMountedRef.current = false);
+    // isMountedRef.current = true;
+    // return () => (isMountedRef.current = false);
   }, []);
 
   return (

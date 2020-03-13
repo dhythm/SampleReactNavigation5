@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect } from 'react';
 import { Alert, Button, View } from 'react-native';
+import AuthNavigator from './Auth';
 import CustomTabNavigator from './CustomTab';
 import DrawerNavigator from './Drawer';
 import NavigationService from './navigation-service';
@@ -38,6 +39,7 @@ const HomeNavigator = () => (
     <Stack.Screen name="Tab" component={TabNavigator} />
     <Stack.Screen name="CustomTab" component={CustomTabNavigator} />
     <Stack.Screen name="Drawer" component={DrawerNavigator} />
+    <Stack.Screen name="Auth" component={AuthNavigator} />
   </Stack.Navigator>
 );
 
@@ -57,6 +59,7 @@ const Home: React.FunctionComponent = () => {
         title="Go to Drawer"
         onPress={() => navigation.navigate('Drawer')}
       />
+      <Button title="Go to Auth" onPress={() => navigation.navigate('Auth')} />
       <Button
         title="Go to CustomTab"
         onPress={() => NavigationService.navigate('CustomTab')}

@@ -1,13 +1,6 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect } from 'react';
+import AuthProvider from './AuthProvider';
 import HomeNavigator from './Home';
 import NavigationService from './navigation-service';
 
@@ -19,13 +12,15 @@ const App: React.FunctionComponent = () => {
 
   return (
     // <NavigationContainer ref={navigationRef as any}>
-    <NavigationContainer
-      ref={(navigationRef) =>
-        NavigationService.setTopLevelNavigator(navigationRef)
-      }
-    >
-      <HomeNavigator />
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer
+        ref={(navigationRef) =>
+          NavigationService.setTopLevelNavigator(navigationRef)
+        }
+      >
+        <HomeNavigator />
+      </NavigationContainer>
+    </AuthProvider>
   );
 };
 

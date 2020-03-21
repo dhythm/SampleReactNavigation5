@@ -40,7 +40,7 @@ const StackNavigator = () => {
         name="ModalScreen"
         component={ModalScreen}
         options={{
-          headerBackTitle: ' ',
+          // headerBackTitle: ' ',
           headerLeft: () => (
             <HeaderBackButton
               labelVisible={false}

@@ -1,12 +1,16 @@
 import { NavigationContainer, useLinking } from '@react-navigation/native';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AuthProvider from './AuthProvider';
 import HomeNavigator from './Home';
-import NavigationService from './navigation-service';
+import MainNavigator from './Main';
+import NavigationService, {
+  isMountedRef,
+  navigationRef,
+} from './navigation-service';
 
 const AppWithDeepLinking: React.FunctionComponent = () => {
-  const ref = useRef();
-  const { getInitialState } = useLinking(ref, {
+  // const ref = useRef();
+  const { getInitialState } = useLinking(navigationRef, {
     prefixes: ['srn5://'],
     config: {
       Details: 'details',
@@ -38,14 +42,20 @@ const AppWithDeepLinking: React.FunctionComponent = () => {
       });
   }, [getInitialState]);
 
+  useEffect(() => {
+    // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/31065
+    (isMountedRef as any).current = true;
+    return () => ((isMountedRef as any).current = false);
+  }, []);
+
   if (!isReady) {
     return null;
   }
 
   return (
     <AuthProvider>
-      <NavigationContainer initialState={initialState} ref={ref}>
-        <HomeNavigator />
+      <NavigationContainer initialState={initialState} ref={navigationRef}>
+        <MainNavigator />
       </NavigationContainer>
     </AuthProvider>
   );

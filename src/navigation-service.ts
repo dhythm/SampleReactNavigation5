@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const isMountedRef = React.createRef<boolean>();
-export const navigationRef = React.createRef();
+export const navigationRef = React.createRef<any>();
 
 let _navigator;
 function setTopLevelNavigator(navigatorRef) {
@@ -13,12 +13,12 @@ function getTopLevelNavigator() {
 
 const navigate = (name: string, params?: any) => {
   // console.log({ isMountedRef, navigationRef });
-  // if (isMountedRef.current && navigationRef.current) {
-  //   navigationRef.current?.navigate(name, params);
-  // } else {
-  //   console.log('Not mounted.');
-  // }
-  _navigator.navigate(name, params);
+  if (isMountedRef.current && navigationRef.current) {
+    (navigationRef.current as any)?.navigate(name, params);
+  } else {
+    console.log('Not mounted.');
+  }
+  // _navigator.navigate(name, params);
 };
 
 export default {

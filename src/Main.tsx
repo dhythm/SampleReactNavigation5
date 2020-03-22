@@ -8,6 +8,7 @@ import {
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import TransparentModalPage, { ModalCard } from './TransparentModalPage';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -37,8 +38,8 @@ const StackNavigator = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="ModalScreen"
-        component={ModalScreen}
+        name="ModalScreen1"
+        component={ModalScreen1}
         options={{
           // headerBackTitle: ' ',
           headerLeft: () => (
@@ -54,13 +55,32 @@ const StackNavigator = () => {
           ),
         }}
       />
+      <Stack.Screen
+        name="ModalScreen2"
+        component={ModalScreen2}
+        options={{
+          headerShown: false,
+          cardStyle: { backgroundColor: 'transparent', opacity: 1 },
+        }}
+      />
     </Stack.Navigator>
   );
 };
-const ModalScreen = () => (
+const ModalScreen1 = () => (
   <View style={styles.container}>
-    <Text>Modal</Text>
+    <Text>Modal Area</Text>
   </View>
+);
+const ModalScreen2 = () => (
+  <TransparentModalPage>
+    <ModalCard>
+      <View
+        style={{ height: 50, alignItems: 'center', justifyContent: 'center' }}
+      >
+        <Text>Modal Area</Text>
+      </View>
+    </ModalCard>
+  </TransparentModalPage>
 );
 
 const TabNavigator = () => {
@@ -74,10 +94,13 @@ const TabNavigator = () => {
 };
 const TabScreen1 = ({ navigation }) => (
   <View style={styles.container}>
-    <Text>Tab 1</Text>
     <Button
-      title="Show Modal"
-      onPress={() => navigation.navigate('ModalScreen')}
+      title="ModalScreen1"
+      onPress={() => navigation.navigate('ModalScreen1')}
+    />
+    <Button
+      title="ModalScreen2"
+      onPress={() => navigation.navigate('ModalScreen2')}
     />
   </View>
 );

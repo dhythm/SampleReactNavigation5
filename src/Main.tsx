@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
   createStackNavigator,
   HeaderBackButton,
+  TransitionPresets,
 } from '@react-navigation/stack';
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
@@ -63,6 +64,14 @@ const StackNavigator = () => {
           cardStyle: { backgroundColor: 'transparent', opacity: 1 },
         }}
       />
+      <Stack.Screen
+        name="StackScreen"
+        component={StackScreen}
+        options={{
+          ...TransitionPresets.DefaultTransition,
+          headerBackTitle: ' ',
+        }}
+      />
     </Stack.Navigator>
   );
 };
@@ -81,6 +90,11 @@ const ModalScreen2 = () => (
       </View>
     </ModalCard>
   </TransparentModalPage>
+);
+const StackScreen = () => (
+  <View style={styles.container}>
+    <Text>Stack Screen</Text>
+  </View>
 );
 
 const TabNavigator = () => {
@@ -101,6 +115,10 @@ const TabScreen1 = ({ navigation }) => (
     <Button
       title="ModalScreen2"
       onPress={() => navigation.navigate('ModalScreen2')}
+    />
+    <Button
+      title="StackScreen"
+      onPress={() => navigation.navigate('StackScreen')}
     />
   </View>
 );
